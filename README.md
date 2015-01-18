@@ -10,7 +10,7 @@ For more information on Minecraft and check out it's [website][1].
 Running this will build you a docker image with the latest version of both
 docker-minecraft and Minecraft itself.
 
-    git clone https://github.com/overshard/docker-minecraft
+    git clone https://github.com/flandiGT/docker-minecraft.git
     cd docker-minecraft
     sudo docker build -t overshard/minecraft .
 
@@ -24,7 +24,7 @@ system you can map the port to 25565 and no proxy is needed. i.e.
 to add another -p=25565:25565/udp to forward the UDP protocol on the
 same port as well.
 Also be sure your mounted directory on your host machine is
-already created before running `mkdir -p /mnt/minecraft`.
+already created before running `mkdir -p /var/opt/minecraft`.
 
     sudo docker run --name='minecraft' -d=true \
         -p=25565:25565 \
