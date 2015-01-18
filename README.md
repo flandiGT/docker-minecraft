@@ -26,15 +26,17 @@ same port as well.
 Also be sure your mounted directory on your host machine is
 already created before running `mkdir -p /mnt/minecraft`.
 
-    sudo docker run -d=true -p=25565:25565 -v=/mnt/minecraft:/data overshard/minecraft /start
+    sudo docker run --name='minecraft' -d=true \
+        -p=25565:25565 \
+        -v=/var/opt/minecraft:/data overshard/minecraft /usr/bin/supervisord
 
 From now on when you start/stop docker-minecraft you should use the container id
 with the following commands. To get your container id, after you initial run
 type `sudo docker ps` and it will show up on the left side followed by the
 image name which is `overshard/minecraft:latest`.
 
-    sudo docker start <container_id>
-    sudo docker stop <container_id>
+    sudo docker start minecraft
+    sudo docker stop minecraft
 
 
 ### Notes on the run command
@@ -63,7 +65,7 @@ connecting to the shell etc.
 
 To use docker-enter you will need the name of the container.
 
-    sudo docker-enter my_awesome_container supervisorctl
+    sudo docker-enter minecraft supervisorctl
 
 Now you will be able to control the supervisor process that is previously
 defined and called minecraft.
