@@ -34,6 +34,11 @@ ADD    ./scripts/start /start
 RUN    chmod +x /start
 
 
+# Install and configure supervisor
+RUN apt-get --yes install supervisor
+ADD supervisor.conf /etc/supervisor/conf.d/minecraft.conf
+
+
 # 25565 is for minecraft
 EXPOSE 25565
 
@@ -41,4 +46,4 @@ EXPOSE 25565
 VOLUME ["/data"]
 
 # /start runs it.
-CMD    ["/start"]
+CMD ["/usr/bin/supervisord"]
